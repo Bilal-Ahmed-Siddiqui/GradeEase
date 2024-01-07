@@ -7,7 +7,8 @@ import json
 
 app = Flask(__name__)
 
-api_key = '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'
+#Add OpenAi's Api Key Here
+api_key = 'sk-'
 openai.api_key = api_key
 
 def req_gpt(AnswerSheet, StudentPaper):
