@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grading Page</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            min-height: 100vh;
+            flex-direction: row;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .navigation {
+            flex: 0 0 15%;
+            background-color: #e9ecef;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            text-align: center;
+        }
+
+        .navigation h2 {
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: #495057;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+
+        .navigation a:hover {
+            background-color: #dee2e6;
+        }
+
+        .active {
+            background-color: #007bff;
+            color: #fff;
+        }
+
+        .icon {
+            margin-right: 10px;
+        }
+
+        .jumbotron {
+            text-align: center;
+            background-color: #d4edda;
+            padding: 80px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .jumbotron h1,
+        .jumbotron p {
+            color: #155724;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .jumbotron h1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .jumbotron p {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+
+        .form-section {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .mb-3 {
+            margin-bottom: 60px;
+            margin-top: 60px;
+        }
+
+        .btn-primary {
+            --green: #28a745;
+            background-color: var(--green);
+            border-color: var(--green);
+        }
+
+        .btn-primary:hover {
+            --darker-green: #218838;
+            background-color: var(--darker-green);
+            border-color: var(--darker-green);
+        }
+
+        .form-control {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .bottom-buttons {
+            margin-top: auto;
+            margin-bottom: 20px;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 0;
+            width: calc(80% - 215px);
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <h2>Grade Ease</h2>
+        <a href="{{ url_for('home') }}" >
+            <span class="icon">🏠</span> Home
+        </a>
+        <a href="{{ url_for('grading') }}" class="active">
+            <span class="icon">📊</span> Grading
+        </a>
+        <a href="{{ url_for('howto') }}">
+            <span class="icon">ℹ️</span> How to Use
+        </a>
+    </div>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="mb-2">You Got This!</h1>
+            <p class="mb-4">Upload the files!</p>
+        </div>
+        <form class="form-section" action="{{ url_for('grading') }}" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="left-column">
+                    <div class="mb-3">
+                        <label for="answerSheet" class="form-label">Answer Sheet (PDF)</label>
+                        <input type="file" class="form-control" id="answerSheet" name="answerSheet" accept=".pdf" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="studentCopies" class="form-label">Student Copies (PDF)</label>
+                        <input type="file" class="form-control" id="studentCopies" name="studentCopies" accept=".pdf" required multiple>
+                    </div>
+                </div>
+            </div>            
+            <div class="bottom-buttons">
+                <a href="{{ url_for('home') }}" class="btn btn-secondary">← Back to Home</a>
+                <button type="submit" class="btn btn-primary">Evaluate!</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
